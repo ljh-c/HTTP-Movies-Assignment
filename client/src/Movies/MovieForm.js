@@ -11,24 +11,38 @@ const MovieForm = props => {
     setMovieInfo(movies.find(movie => `${movie.id}` === props.match.params.id));
   }, [movies]);
 
+  const handleChange = (evt, index) => {
+    if (evt.target.name === 'stars') {
+      setMovieInfo({
+        ...movieInfo,
+        stars: movieInfo.stars.map((star, idx) => idx === index ? evt.target.value : star)
+      });
+    } else {
+      setMovieInfo({
+        ...movieInfo,
+        [evt.target.name]: evt.target.value
+      });
+    }
+  };
+
   return (
     <div className="save-wrapper">
-      <h1>update movie</h1>
-      {/* <div className="movie-card">
-        <form>
+      <div className="movie-card">
+        {movieInfo && (
+          <form>
           <input type="text"
             placeholder="Title"
             name="title"
-            value={}
-            onChange={}
+            value={movieInfo.title}
+            onChange={handleChange}
             required
           />
           <div className="movie-director">
             <input type="text"
               placeholder="Director"
               name="director"
-              value={}
-              onChange={}
+              value={movieInfo.director}
+              onChange={handleChange}
               required
             />
           </div>
@@ -36,14 +50,25 @@ const MovieForm = props => {
             <input type="number"
               placeholder="Metascore"
               name="metascore"
-              value={}
-              onChange={}
+              value={movieInfo.metascore}
+              onChange={handleChange}
               required
             />
           </div>
           <h3>Actors</h3>
+          {movieInfo.stars.map((star, index) => (
+            <div key={index} className="movie-star">
+              <input type="text"
+                placeholder="Actor"
+                name="stars"
+                value={movieInfo.stars[index]}
+                onChange={(evt) => handleChange(evt, index)}
+              />
+            </div>
+          ))}
         </form>
-      </div> */}
+        )}
+      </div>
     </div>
   );
 };
