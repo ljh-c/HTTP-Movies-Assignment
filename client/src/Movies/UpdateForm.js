@@ -35,10 +35,14 @@ const UpdateForm = props => {
     }
   };
 
+  const handleSubmit = evt => {
+    evt.preventDefault();
+  };
+
   return (
     <div className="save-wrapper">
       <div className="movie-card">
-        <form>
+        <form onSubmit={handleSubmit}>
           <input type="text"
             placeholder="Title"
             name="title"
@@ -75,7 +79,7 @@ const UpdateForm = props => {
               />
             </div>
           ))}
-          <button>Send Edit</button>
+          <button>Send Update</button>
         </form>
       </div>
     </div>
