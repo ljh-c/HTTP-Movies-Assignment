@@ -4,7 +4,12 @@ import { MoviesContext } from '../contexts/MoviesContext';
 
 const UpdateForm = props => {
   const movies = useContext(MoviesContext);
-  const [movieInfo, setMovieInfo] = useState(null);
+  const [movieInfo, setMovieInfo] = useState({
+    title: '',
+    director: '',
+    metascore: '',
+    stars: []
+  });
   const { id } = useParams();
 
   // on mount, App has not yet fetched data
@@ -33,8 +38,7 @@ const UpdateForm = props => {
   return (
     <div className="save-wrapper">
       <div className="movie-card">
-        {movieInfo && (
-          <form>
+        <form>
           <input type="text"
             placeholder="Title"
             name="title"
@@ -73,7 +77,6 @@ const UpdateForm = props => {
           ))}
           <button>Send Edit</button>
         </form>
-        )}
       </div>
     </div>
   );
