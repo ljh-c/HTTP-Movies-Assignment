@@ -9,7 +9,7 @@ const MovieForm = props => {
 
   useEffect(() => {
     setMovieInfo(movies.find(movie => `${movie.id}` === props.match.params.id));
-  }, [movies]);
+  }, [movies, props.match.params.id]);
 
   const handleChange = (evt, index) => {
     if (evt.target.name === 'stars') {
@@ -66,6 +66,7 @@ const MovieForm = props => {
               />
             </div>
           ))}
+          <button>Send Edit</button>
         </form>
         )}
       </div>
