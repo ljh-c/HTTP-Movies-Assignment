@@ -34,7 +34,7 @@ const App = () => {
       <Route
         path="/update-movie/:id"
         render={props => {
-          return <MovieForm {...props} />
+          return <MovieForm {...props} movies={movies} />
         }}
       />
     </MoviesContext.Provider>
