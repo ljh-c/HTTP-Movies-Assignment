@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { MoviesContext } from '../contexts/MoviesContext';
 
 const UpdateForm = props => {
@@ -37,6 +38,12 @@ const UpdateForm = props => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
+    axios.put(`http://localhost:5000/api/movies/${id}`, movieInfo)
+      .then(res => {
+        props.dispatch({type: 'EDIT_MOVIE', payload: res.data});
+        props.history.push('/');
+      })
+      .catch(err => console.log(err))
   };
 
   return (
