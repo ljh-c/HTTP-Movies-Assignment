@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-const MovieForm = () => {
+const MovieForm = props => {
   // title, director, metascore, stars
-  // const [movieInfo, setMovieInfo] = useState(null);
+  const [movieInfo, setMovieInfo] = useState(null);
 
-  // useEffect(() => {
-
-  // }, [])
+  useEffect(() => {
+    
+  }, [])
 
   return (
     <div className="save-wrapper">
