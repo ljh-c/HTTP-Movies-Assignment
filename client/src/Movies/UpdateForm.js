@@ -1,18 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { MoviesContext } from '../contexts/MoviesContext';
 
-const MovieForm = props => {
+const UpdateForm = props => {
   const movies = useContext(MoviesContext);
-
-  // title, director, metascore, stars
   const [movieInfo, setMovieInfo] = useState(null);
+  const { id } = useParams();
 
+  // on mount, App has not yet fetched data
   useEffect(() => {
-    setMovieInfo(movies.find(movie => `${movie.id}` === props.match.params.id));
-  }, [movies, props.match.params.id]);
+    const movieToEdit = movies.find(movie => `${movie.id}` === id);
+    
+    if (movieToEdit) setMovieInfo(movieToEdit);
+
+  }, [movies, id]);
 
   const handleChange = (evt, index) => {
-    if (evt.target.name === 'stars') {
+    evt.persist();
+    if (evt.target.name === 'actor') {
       setMovieInfo({
         ...movieInfo,
         stars: movieInfo.stars.map((star, idx) => idx === index ? evt.target.value : star)
@@ -60,9 +65,9 @@ const MovieForm = props => {
             <div key={index} className="movie-star">
               <input type="text"
                 placeholder="Actor"
-                name="stars"
+                name="actor"
                 value={movieInfo.stars[index]}
-                onChange={(evt) => handleChange(evt, index)}
+                onChange={evt => handleChange(evt, index)}
               />
             </div>
           ))}
@@ -74,4 +79,4 @@ const MovieForm = props => {
   );
 };
 
-export default MovieForm;
+export default UpdateForm;

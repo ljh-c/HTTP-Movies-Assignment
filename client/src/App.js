@@ -4,7 +4,7 @@ import axios from "axios";
 import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
-import MovieForm from "./Movies/MovieForm";
+import UpdateForm from "./Movies/UpdateForm";
 import { MoviesContext } from "./contexts/MoviesContext";
 
 const App = () => {
@@ -34,7 +34,7 @@ const App = () => {
       <Route
         path="/update-movie/:id"
         render={props => {
-          return <MovieForm {...props} movies={movies} />
+          return <UpdateForm {...props} />
         }}
       />
     </MoviesContext.Provider>
