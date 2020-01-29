@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 export default class Movie extends React.Component {
   constructor(props) {
@@ -39,6 +40,9 @@ export default class Movie extends React.Component {
     return (
       <div className="save-wrapper">
         <MovieCard movie={this.state.movie} />
+        <Link to={`/update-movie/${this.state.movie.id}`}>
+          <button className="edit-button">Edit</button>
+        </Link>
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
