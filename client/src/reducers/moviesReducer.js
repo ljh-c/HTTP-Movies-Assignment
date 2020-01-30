@@ -21,7 +21,13 @@ export const moviesReducer = (state, action) => {
       return {
         ...state,
         isLoading: true
-      }
+      };
+
+    case 'ADD_MOVIE':
+      return {
+        ...state,
+        movies: action.payload
+      };
 
     default:
       return state;

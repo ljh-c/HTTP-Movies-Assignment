@@ -5,6 +5,7 @@ import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import UpdateForm from "./Movies/UpdateForm";
+import AddForm from "./Movies/AddForm";
 import { MoviesContext } from "./contexts/MoviesContext";
 import { moviesReducer, initialState } from "./reducers/moviesReducer";
 
@@ -36,6 +37,12 @@ const App = () => {
         path="/update-movie/:id"
         render={props => {
           return <UpdateForm {...props} dispatch={dispatch} />
+        }}
+      />
+      <Route
+        path="/add-movie"
+        render={props => {
+          return <AddForm {...props} dispatch={dispatch} />
         }}
       />
     </MoviesContext.Provider>
