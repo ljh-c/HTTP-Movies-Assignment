@@ -7,7 +7,7 @@ export const moviesReducer = (state, action) => {
   switch(action.type) {
     case 'SET_MOVIES':
       return {
-        isLoading: !state.isLoading,
+        isLoading: false,
         movies: action.payload
       };
 
@@ -20,7 +20,7 @@ export const moviesReducer = (state, action) => {
     case 'DELETE_MOVIE':
       return {
         ...state,
-        isLoading: !state.isLoading
+        isLoading: true
       }
 
     default:
